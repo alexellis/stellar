@@ -22,7 +22,6 @@ import (
 	"io"
 	"os"
 	"path/filepath"
-	"strings"
 
 	"github.com/pkg/errors"
 )
@@ -47,9 +46,8 @@ func pathChange(lower, upper *currentPath) (ChangeKind, string) {
 	if upper == nil {
 		return ChangeKindDelete, lower.path
 	}
-	// TODO: compare by directory
 
-	switch i := strings.Compare(lower.path, upper.path); {
+	switch i := directoryCompare(lower.path, upper.path); {
 	case i < 0:
 		// File in lower that is not in upper
 		return ChangeKindDelete, lower.path
@@ -59,6 +57,35 @@ func pathChange(lower, upper *currentPath) (ChangeKind, string) {
 	default:
 		return ChangeKindModify, upper.path
 	}
+}
+
+func directoryCompare(a, b string) int {
+	l := len(a)
+	if len(b) < l {
+		l = len(b)
+	}
+	for i := 0; i < l; i++ {
+		c1, c2 := a[i], b[i]
+		if c1 == filepath.Separator {
+			c1 = byte(0)
+		}
+		if c2 == filepath.Separator {
+			c2 = byte(0)
+		}
+		if c1 < c2 {
+			return -1
+		}
+		if c1 > c2 {
+			return +1
+		}
+	}
+	if len(a) < len(b) {
+		return -1
+	}
+	if len(a) > len(b) {
+		return +1
+	}
+	return 0
 }
 
 func sameFile(f1, f2 *currentPath) (bool, error) {
@@ -247,12 +274,6 @@ func walkLink(root, path string, linksWalked *int) (newpath string, islink bool,
 	newpath, err = os.Readlink(realPath)
 	if err != nil {
 		return "", false, err
-	}
-	if filepath.IsAbs(newpath) && strings.HasPrefix(newpath, root) {
-		newpath = newpath[:len(root)]
-		if !strings.HasPrefix(newpath, "/") {
-			newpath = "/" + newpath
-		}
 	}
 	*linksWalked++
 	return newpath, true, nil
