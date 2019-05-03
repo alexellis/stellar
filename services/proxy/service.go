@@ -17,14 +17,11 @@ import (
 	ptypes "github.com/gogo/protobuf/types"
 	"github.com/sirupsen/logrus"
 	"github.com/stellarproject/element"
-	"github.com/stellarproject/radiant"
-	radiantserver "github.com/stellarproject/radiant/server"
 	"google.golang.org/grpc"
 )
 
 const (
 	serviceID         = "stellar.services.proxy.v1"
-	radiantGRPCAddr   = "unix:///run/radiant.sock"
 	dsProxyBucketName = "stellar." + stellar.APIVersion + ".services.proxy"
 )
 
@@ -38,10 +35,6 @@ type service struct {
 	agent          *element.Agent
 	config         *stellar.Config
 	errCh          chan error
-
-	// set on start
-	server  *radiantserver.Server
-	bclient *radiant.Client
 }
 
 func New(cfg *stellar.Config, agent *element.Agent) (services.Service, error) {
@@ -90,39 +83,6 @@ func (s *service) Info(ctx context.Context, req *api.InfoRequest) (*api.InfoResp
 }
 
 func (s *service) Start() error {
-	client, err := s.client(s.agent.Self().Address)
-	if err != nil {
-		return err
-	}
-	config := &radiant.Config{
-		GRPCAddr:  radiantGRPCAddr,
-		HTTPPort:  s.config.ProxyHTTPPort,
-		HTTPSPort: s.config.ProxyHTTPSPort,
-		Debug:     false,
-	}
-	ds, err := newDatastore(client)
-	if err != nil {
-		return err
-	}
-	srv, err := radiantserver.NewServer(config, ds)
-	if err != nil {
-		return err
-	}
-	if err := srv.Run(); err != nil {
-		return err
-	}
-
-	bc, err := radiant.NewClient(radiantGRPCAddr)
-	if err != nil {
-		return err
-	}
-	s.bclient = bc
-
-	// initial reload
-	if err := s.reload(); err != nil {
-		return err
-	}
-
 	c, err := s.client(s.agent.Self().Address)
 	if err != nil {
 		return err
@@ -158,10 +118,6 @@ func (s *service) Start() error {
 				logrus.WithFields(logrus.Fields{
 					"event": fmt.Sprintf("%T", e),
 				}).Debug("reloading proxy")
-				if err := s.reload(); err != nil {
-					logrus.Error(err)
-					continue
-				}
 			default:
 				logrus.Errorf("unknown event type: %+v", e)
 			}

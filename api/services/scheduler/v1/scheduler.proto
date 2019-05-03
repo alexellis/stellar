@@ -4,7 +4,7 @@ package stellar.services.scheduler.v1;
 
 import "gogoproto/gogo.proto";
 import "api/services/cluster/v1/cluster.proto";
-import "api/services/runtime/v1/runtime.proto";
+import "api/services/application/v1/application.proto";
 
 option go_package = "github.com/ehazlett/stellar/api/services/scheduler/v1;scheduler";
 
@@ -13,7 +13,7 @@ service Scheduler {
 }
 
 message ScheduleRequest {
-        stellar.services.runtime.v1.Service service = 1;
+        stellar.services.application.v1.App app = 1;
         repeated stellar.services.cluster.v1.Node available_nodes = 2;
 }
 

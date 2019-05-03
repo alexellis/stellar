@@ -32,7 +32,6 @@ var (
 
 	dsServerBucketName = "stellar.server"
 	// TODO: make configurable
-	reconcileInterval     = time.Second * 10
 	datastoreSyncInterval = time.Second * 300
 	// timeouts for services to start and stop
 	serviceStartTimeout = time.Second * 5
@@ -265,20 +264,6 @@ func (s *Server) syncDatastore() error {
 	return nil
 }
 
-func (s *Server) init() error {
-	logrus.Debug("initializing server")
-	started := time.Now()
-
-	// initialize local networking
-	if err := s.initNetworking(); err != nil {
-		return err
-	}
-
-	logrus.Debugf("initializion duration: %s", time.Since(started))
-
-	return nil
-}
-
 func (s *Server) Run() error {
 	l, err := net.Listen("tcp", s.config.GRPCAddress)
 	if err != nil {
@@ -319,16 +304,7 @@ func (s *Server) Run() error {
 		}
 	}()
 
-	s.tickerReconcile = time.NewTicker(reconcileInterval)
 	s.tickerDatastoreSync = time.NewTicker(datastoreSyncInterval)
-
-	go func() {
-		for range s.tickerReconcile.C {
-			if err := s.reconcile(); err != nil {
-				s.errCh <- err
-			}
-		}
-	}()
 
 	go func() {
 		for range s.tickerDatastoreSync.C {

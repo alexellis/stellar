@@ -19,7 +19,6 @@ import (
 	nameserverservice "github.com/ehazlett/stellar/services/nameserver"
 	networkservice "github.com/ehazlett/stellar/services/network"
 	proxyservice "github.com/ehazlett/stellar/services/proxy"
-	runtimeservice "github.com/ehazlett/stellar/services/runtime"
 	schedulerservice "github.com/ehazlett/stellar/services/scheduler"
 	versionservice "github.com/ehazlett/stellar/services/version"
 	"github.com/sirupsen/logrus"
@@ -62,7 +61,6 @@ func serverAction(ctx *cli.Context) error {
 		datastoreservice.New,
 		networkservice.New,
 		gatewayservice.New,
-		runtimeservice.New,
 		applicationservice.New,
 		nameserverservice.New,
 		proxyservice.New,

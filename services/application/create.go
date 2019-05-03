@@ -5,7 +5,6 @@ import (
 	"fmt"
 
 	api "github.com/ehazlett/stellar/api/services/application/v1"
-	runtimeapi "github.com/ehazlett/stellar/api/services/runtime/v1"
 	ptypes "github.com/gogo/protobuf/types"
 	"github.com/sirupsen/logrus"
 )
@@ -36,7 +35,7 @@ func (s *service) Create(ctx context.Context, req *api.CreateRequest) (*ptypes.E
 		ids[cnt.Container.ID] = struct{}{}
 	}
 
-	services := []*runtimeapi.Service{}
+	services := []*api.Service{}
 	for i, service := range req.Services {
 		id := fmt.Sprintf("%s.%s.%d", req.Name, service.Name, i)
 		if _, ok := ids[id]; ok {

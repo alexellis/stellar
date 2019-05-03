@@ -6,8 +6,7 @@ package cluster
 import (
 	context "context"
 	fmt "fmt"
-	v11 "github.com/ehazlett/stellar/api/services/health/v1"
-	v1 "github.com/ehazlett/stellar/api/services/runtime/v1"
+	v1 "github.com/ehazlett/stellar/api/services/health/v1"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"
@@ -93,74 +92,6 @@ func (m *InfoResponse) GetID() string {
 	return ""
 }
 
-type ContainersRequest struct {
-	Filters              []string `protobuf:"bytes,1,rep,name=filters,proto3" json:"filters,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ContainersRequest) Reset()         { *m = ContainersRequest{} }
-func (m *ContainersRequest) String() string { return proto.CompactTextString(m) }
-func (*ContainersRequest) ProtoMessage()    {}
-func (*ContainersRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c077b095128b9733, []int{2}
-}
-func (m *ContainersRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ContainersRequest.Unmarshal(m, b)
-}
-func (m *ContainersRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ContainersRequest.Marshal(b, m, deterministic)
-}
-func (m *ContainersRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ContainersRequest.Merge(m, src)
-}
-func (m *ContainersRequest) XXX_Size() int {
-	return xxx_messageInfo_ContainersRequest.Size(m)
-}
-func (m *ContainersRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ContainersRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ContainersRequest proto.InternalMessageInfo
-
-func (m *ContainersRequest) GetFilters() []string {
-	if m != nil {
-		return m.Filters
-	}
-	return nil
-}
-
-type ImagesRequest struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *ImagesRequest) Reset()         { *m = ImagesRequest{} }
-func (m *ImagesRequest) String() string { return proto.CompactTextString(m) }
-func (*ImagesRequest) ProtoMessage()    {}
-func (*ImagesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c077b095128b9733, []int{3}
-}
-func (m *ImagesRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ImagesRequest.Unmarshal(m, b)
-}
-func (m *ImagesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ImagesRequest.Marshal(b, m, deterministic)
-}
-func (m *ImagesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ImagesRequest.Merge(m, src)
-}
-func (m *ImagesRequest) XXX_Size() int {
-	return xxx_messageInfo_ImagesRequest.Size(m)
-}
-func (m *ImagesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ImagesRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ImagesRequest proto.InternalMessageInfo
-
 type NodesRequest struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -171,7 +102,7 @@ func (m *NodesRequest) Reset()         { *m = NodesRequest{} }
 func (m *NodesRequest) String() string { return proto.CompactTextString(m) }
 func (*NodesRequest) ProtoMessage()    {}
 func (*NodesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c077b095128b9733, []int{4}
+	return fileDescriptor_c077b095128b9733, []int{2}
 }
 func (m *NodesRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_NodesRequest.Unmarshal(m, b)
@@ -191,82 +122,6 @@ func (m *NodesRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_NodesRequest proto.InternalMessageInfo
 
-type ContainersResponse struct {
-	Containers           []*Container `protobuf:"bytes,1,rep,name=containers,proto3" json:"containers,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
-	XXX_unrecognized     []byte       `json:"-"`
-	XXX_sizecache        int32        `json:"-"`
-}
-
-func (m *ContainersResponse) Reset()         { *m = ContainersResponse{} }
-func (m *ContainersResponse) String() string { return proto.CompactTextString(m) }
-func (*ContainersResponse) ProtoMessage()    {}
-func (*ContainersResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c077b095128b9733, []int{5}
-}
-func (m *ContainersResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ContainersResponse.Unmarshal(m, b)
-}
-func (m *ContainersResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ContainersResponse.Marshal(b, m, deterministic)
-}
-func (m *ContainersResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ContainersResponse.Merge(m, src)
-}
-func (m *ContainersResponse) XXX_Size() int {
-	return xxx_messageInfo_ContainersResponse.Size(m)
-}
-func (m *ContainersResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ContainersResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ContainersResponse proto.InternalMessageInfo
-
-func (m *ContainersResponse) GetContainers() []*Container {
-	if m != nil {
-		return m.Containers
-	}
-	return nil
-}
-
-type ImagesResponse struct {
-	Images               []*v1.Image `protobuf:"bytes,1,rep,name=images,proto3" json:"images,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
-}
-
-func (m *ImagesResponse) Reset()         { *m = ImagesResponse{} }
-func (m *ImagesResponse) String() string { return proto.CompactTextString(m) }
-func (*ImagesResponse) ProtoMessage()    {}
-func (*ImagesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c077b095128b9733, []int{6}
-}
-func (m *ImagesResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ImagesResponse.Unmarshal(m, b)
-}
-func (m *ImagesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ImagesResponse.Marshal(b, m, deterministic)
-}
-func (m *ImagesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ImagesResponse.Merge(m, src)
-}
-func (m *ImagesResponse) XXX_Size() int {
-	return xxx_messageInfo_ImagesResponse.Size(m)
-}
-func (m *ImagesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ImagesResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ImagesResponse proto.InternalMessageInfo
-
-func (m *ImagesResponse) GetImages() []*v1.Image {
-	if m != nil {
-		return m.Images
-	}
-	return nil
-}
-
 type Node struct {
 	ID                   string            `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Address              string            `protobuf:"bytes,2,opt,name=address,proto3" json:"address,omitempty"`
@@ -280,7 +135,7 @@ func (m *Node) Reset()         { *m = Node{} }
 func (m *Node) String() string { return proto.CompactTextString(m) }
 func (*Node) ProtoMessage()    {}
 func (*Node) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c077b095128b9733, []int{7}
+	return fileDescriptor_c077b095128b9733, []int{3}
 }
 func (m *Node) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_Node.Unmarshal(m, b)
@@ -332,7 +187,7 @@ func (m *NodesResponse) Reset()         { *m = NodesResponse{} }
 func (m *NodesResponse) String() string { return proto.CompactTextString(m) }
 func (*NodesResponse) ProtoMessage()    {}
 func (*NodesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c077b095128b9733, []int{8}
+	return fileDescriptor_c077b095128b9733, []int{4}
 }
 func (m *NodesResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_NodesResponse.Unmarshal(m, b)
@@ -359,52 +214,6 @@ func (m *NodesResponse) GetNodes() []*Node {
 	return nil
 }
 
-type Container struct {
-	Container            *v1.Container `protobuf:"bytes,1,opt,name=container,proto3" json:"container,omitempty"`
-	Node                 *Node         `protobuf:"bytes,2,opt,name=node,proto3" json:"node,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *Container) Reset()         { *m = Container{} }
-func (m *Container) String() string { return proto.CompactTextString(m) }
-func (*Container) ProtoMessage()    {}
-func (*Container) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c077b095128b9733, []int{9}
-}
-func (m *Container) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Container.Unmarshal(m, b)
-}
-func (m *Container) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Container.Marshal(b, m, deterministic)
-}
-func (m *Container) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Container.Merge(m, src)
-}
-func (m *Container) XXX_Size() int {
-	return xxx_messageInfo_Container.Size(m)
-}
-func (m *Container) XXX_DiscardUnknown() {
-	xxx_messageInfo_Container.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Container proto.InternalMessageInfo
-
-func (m *Container) GetContainer() *v1.Container {
-	if m != nil {
-		return m.Container
-	}
-	return nil
-}
-
-func (m *Container) GetNode() *Node {
-	if m != nil {
-		return m.Node
-	}
-	return nil
-}
-
 type HealthRequest struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -415,7 +224,7 @@ func (m *HealthRequest) Reset()         { *m = HealthRequest{} }
 func (m *HealthRequest) String() string { return proto.CompactTextString(m) }
 func (*HealthRequest) ProtoMessage()    {}
 func (*HealthRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c077b095128b9733, []int{10}
+	return fileDescriptor_c077b095128b9733, []int{5}
 }
 func (m *HealthRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_HealthRequest.Unmarshal(m, b)
@@ -436,18 +245,18 @@ func (m *HealthRequest) XXX_DiscardUnknown() {
 var xxx_messageInfo_HealthRequest proto.InternalMessageInfo
 
 type NodeHealth struct {
-	Node                 *Node           `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
-	Health               *v11.NodeHealth `protobuf:"bytes,2,opt,name=health,proto3" json:"health,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}        `json:"-"`
-	XXX_unrecognized     []byte          `json:"-"`
-	XXX_sizecache        int32           `json:"-"`
+	Node                 *Node          `protobuf:"bytes,1,opt,name=node,proto3" json:"node,omitempty"`
+	Health               *v1.NodeHealth `protobuf:"bytes,2,opt,name=health,proto3" json:"health,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}       `json:"-"`
+	XXX_unrecognized     []byte         `json:"-"`
+	XXX_sizecache        int32          `json:"-"`
 }
 
 func (m *NodeHealth) Reset()         { *m = NodeHealth{} }
 func (m *NodeHealth) String() string { return proto.CompactTextString(m) }
 func (*NodeHealth) ProtoMessage()    {}
 func (*NodeHealth) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c077b095128b9733, []int{11}
+	return fileDescriptor_c077b095128b9733, []int{6}
 }
 func (m *NodeHealth) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_NodeHealth.Unmarshal(m, b)
@@ -474,7 +283,7 @@ func (m *NodeHealth) GetNode() *Node {
 	return nil
 }
 
-func (m *NodeHealth) GetHealth() *v11.NodeHealth {
+func (m *NodeHealth) GetHealth() *v1.NodeHealth {
 	if m != nil {
 		return m.Health
 	}
@@ -492,7 +301,7 @@ func (m *HealthResponse) Reset()         { *m = HealthResponse{} }
 func (m *HealthResponse) String() string { return proto.CompactTextString(m) }
 func (*HealthResponse) ProtoMessage()    {}
 func (*HealthResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_c077b095128b9733, []int{12}
+	return fileDescriptor_c077b095128b9733, []int{7}
 }
 func (m *HealthResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_HealthResponse.Unmarshal(m, b)
@@ -522,15 +331,10 @@ func (m *HealthResponse) GetNodes() []*NodeHealth {
 func init() {
 	proto.RegisterType((*InfoRequest)(nil), "stellar.services.cluster.v1.InfoRequest")
 	proto.RegisterType((*InfoResponse)(nil), "stellar.services.cluster.v1.InfoResponse")
-	proto.RegisterType((*ContainersRequest)(nil), "stellar.services.cluster.v1.ContainersRequest")
-	proto.RegisterType((*ImagesRequest)(nil), "stellar.services.cluster.v1.ImagesRequest")
 	proto.RegisterType((*NodesRequest)(nil), "stellar.services.cluster.v1.NodesRequest")
-	proto.RegisterType((*ContainersResponse)(nil), "stellar.services.cluster.v1.ContainersResponse")
-	proto.RegisterType((*ImagesResponse)(nil), "stellar.services.cluster.v1.ImagesResponse")
 	proto.RegisterType((*Node)(nil), "stellar.services.cluster.v1.Node")
 	proto.RegisterMapType((map[string]string)(nil), "stellar.services.cluster.v1.Node.LabelsEntry")
 	proto.RegisterType((*NodesResponse)(nil), "stellar.services.cluster.v1.NodesResponse")
-	proto.RegisterType((*Container)(nil), "stellar.services.cluster.v1.Container")
 	proto.RegisterType((*HealthRequest)(nil), "stellar.services.cluster.v1.HealthRequest")
 	proto.RegisterType((*NodeHealth)(nil), "stellar.services.cluster.v1.NodeHealth")
 	proto.RegisterType((*HealthResponse)(nil), "stellar.services.cluster.v1.HealthResponse")
@@ -541,47 +345,38 @@ func init() {
 }
 
 var fileDescriptor_c077b095128b9733 = []byte{
-	// 636 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x55, 0x4d, 0x6f, 0xd3, 0x40,
-	0x10, 0xc5, 0x69, 0xea, 0x2a, 0xd3, 0x0f, 0xe8, 0x52, 0xa1, 0x60, 0x90, 0x28, 0x8b, 0x28, 0x6d,
-	0x51, 0x6d, 0xb5, 0x08, 0x01, 0xad, 0x8a, 0x44, 0x3f, 0x50, 0x2b, 0x55, 0x20, 0xf9, 0x84, 0x80,
-	0xcb, 0x36, 0xd9, 0x3a, 0x16, 0x8e, 0xb7, 0x78, 0x37, 0x91, 0xc2, 0x11, 0x2e, 0xdc, 0x91, 0xf8,
-	0x31, 0xfc, 0x0d, 0xee, 0x1c, 0x10, 0x3f, 0x04, 0xed, 0xee, 0xd8, 0x71, 0x44, 0x49, 0x0c, 0xb7,
-	0xd9, 0xf1, 0x9b, 0x37, 0x6f, 0x9f, 0x67, 0x6c, 0x78, 0x16, 0xc5, 0xaa, 0xd3, 0x3b, 0xf5, 0x5b,
-	0xa2, 0x1b, 0xf0, 0x0e, 0xfb, 0x90, 0x70, 0xa5, 0x02, 0xa9, 0x78, 0x92, 0xb0, 0x2c, 0x60, 0xe7,
-	0x71, 0x20, 0x79, 0xd6, 0x8f, 0x5b, 0x5c, 0x06, 0xad, 0xa4, 0x27, 0x15, 0xcf, 0x82, 0xfe, 0x66,
-	0x1e, 0xfa, 0xe7, 0x99, 0x50, 0x82, 0xdc, 0x40, 0xb8, 0x9f, 0x43, 0xfd, 0xfc, 0x79, 0x7f, 0xd3,
-	0xbb, 0x19, 0x09, 0x11, 0x25, 0xdc, 0x50, 0xb1, 0x34, 0x15, 0x8a, 0xa9, 0x58, 0xa4, 0xd2, 0x96,
-	0x7a, 0x4b, 0x91, 0x88, 0x84, 0x09, 0x03, 0x1d, 0x61, 0xf6, 0xee, 0x48, 0xdf, 0xac, 0x97, 0xaa,
-	0xb8, 0xcb, 0x75, 0x5f, 0x0c, 0x11, 0x76, 0x67, 0x04, 0xd6, 0xe1, 0x2c, 0x51, 0x1d, 0x8d, 0xb2,
-	0x91, 0x05, 0xd1, 0x79, 0x98, 0x3d, 0x4e, 0xcf, 0x44, 0xc8, 0xdf, 0xf7, 0xb8, 0x54, 0x74, 0x05,
-	0xe6, 0xec, 0x51, 0x9e, 0x8b, 0x54, 0x72, 0x72, 0x0d, 0x6a, 0x71, 0xbb, 0xe9, 0x2c, 0x3b, 0xab,
-	0x8d, 0x3d, 0xf7, 0xe7, 0x8f, 0x5b, 0xb5, 0xe3, 0x83, 0xb0, 0x16, 0xb7, 0xe9, 0x06, 0x2c, 0xee,
-	0x8b, 0x54, 0xb1, 0x38, 0xe5, 0x99, 0xc4, 0x62, 0xd2, 0x84, 0x99, 0xb3, 0x38, 0x51, 0x3c, 0x93,
-	0x4d, 0x67, 0x79, 0x6a, 0xb5, 0x11, 0xe6, 0x47, 0x7a, 0x19, 0xe6, 0x8f, 0xbb, 0x2c, 0xe2, 0x39,
-	0x94, 0x2e, 0xc0, 0xdc, 0x0b, 0xd1, 0x1e, 0x9e, 0xdf, 0x02, 0x29, 0xf3, 0x61, 0xf7, 0xe7, 0x00,
-	0xad, 0x22, 0x6b, 0x38, 0x67, 0xb7, 0x56, 0xfc, 0x31, 0x76, 0xfa, 0x05, 0x49, 0x58, 0xaa, 0xa4,
-	0x27, 0xb0, 0x90, 0xb7, 0x47, 0xe6, 0x6d, 0x70, 0x63, 0x93, 0x41, 0x56, 0xfa, 0x27, 0x6b, 0x6e,
-	0x66, 0x7f, 0xd3, 0x37, 0xc5, 0x21, 0x56, 0xd0, 0x6f, 0x0e, 0xd4, 0xb5, 0xf8, 0xbf, 0x99, 0xa3,
-	0x7d, 0x60, 0xed, 0x76, 0xc6, 0xa5, 0x6c, 0xd6, 0xf4, 0xc3, 0x30, 0x3f, 0x92, 0x43, 0x70, 0x13,
-	0x76, 0xca, 0x13, 0xd9, 0x9c, 0x32, 0x6d, 0x37, 0xc6, 0x5e, 0x46, 0x37, 0xf1, 0x4f, 0x0c, 0xfe,
-	0x30, 0x55, 0xd9, 0x20, 0xc4, 0x62, 0xef, 0x09, 0xcc, 0x96, 0xd2, 0xe4, 0x0a, 0x4c, 0xbd, 0xe3,
-	0x03, 0x2b, 0x24, 0xd4, 0x21, 0x59, 0x82, 0xe9, 0x3e, 0x4b, 0x7a, 0x1c, 0xfb, 0xdb, 0xc3, 0x76,
-	0xed, 0xb1, 0x43, 0x8f, 0x60, 0x1e, 0x8d, 0x47, 0x27, 0x1e, 0xc1, 0x74, 0xaa, 0x13, 0x68, 0xc4,
-	0xed, 0x89, 0x8a, 0x42, 0x8b, 0xa7, 0x9f, 0x1d, 0x68, 0x14, 0x76, 0x93, 0x03, 0x68, 0x14, 0x86,
-	0x1b, 0x25, 0x17, 0xbe, 0xa9, 0x92, 0xa7, 0xc3, 0x37, 0x35, 0x2c, 0x24, 0x0f, 0xa1, 0xae, 0xc9,
-	0x8d, 0xec, 0x4a, 0x5a, 0x0c, 0x5c, 0x8f, 0xd7, 0x91, 0x19, 0xea, 0x7c, 0x9c, 0x3e, 0x39, 0x00,
-	0xfa, 0xb9, 0xcd, 0x16, 0xb4, 0xce, 0x3f, 0xd1, 0x92, 0xa7, 0xe0, 0xda, 0x5d, 0x41, 0x3d, 0x17,
-	0x5c, 0x08, 0x77, 0x09, 0xeb, 0x50, 0x04, 0x56, 0xd1, 0x97, 0xb0, 0x90, 0xcb, 0x42, 0xb3, 0x77,
-	0x47, 0xcd, 0xbe, 0x37, 0x51, 0x09, 0xd6, 0xdb, 0xaa, 0xad, 0xaf, 0x75, 0x98, 0xd9, 0xb7, 0x00,
-	0xf2, 0x06, 0xea, 0x7a, 0x53, 0xc9, 0xea, 0x58, 0x8e, 0xd2, 0x6e, 0x7b, 0x6b, 0x15, 0x90, 0xa8,
-	0xb3, 0x0b, 0x30, 0x5c, 0x47, 0xe2, 0x57, 0x5b, 0xb9, 0x7c, 0x99, 0xbd, 0xa0, 0x32, 0x1e, 0xdb,
-	0x31, 0x70, 0xed, 0x7e, 0x92, 0xf5, 0xf1, 0x1a, 0xcb, 0xdf, 0x10, 0xef, 0x7e, 0x25, 0x2c, 0xb6,
-	0x18, 0xc0, 0xb4, 0x99, 0x7b, 0xb2, 0x36, 0xd1, 0xf3, 0xa2, 0xc1, 0x7a, 0x15, 0xa8, 0xe5, 0xa7,
-	0xd7, 0x3f, 0x7e, 0xff, 0xf5, 0xa5, 0x76, 0x95, 0x2c, 0x96, 0xbe, 0xff, 0x81, 0x79, 0x6b, 0xfa,
-	0x76, 0x38, 0x87, 0xe3, 0x09, 0x47, 0x46, 0x78, 0xc2, 0xed, 0x46, 0xe7, 0x6a, 0x6f, 0xf7, 0xf5,
-	0xce, 0x7f, 0xfc, 0xa7, 0x76, 0x30, 0x7c, 0x75, 0xe9, 0xd4, 0x35, 0x7f, 0x83, 0x07, 0xbf, 0x03,
-	0x00, 0x00, 0xff, 0xff, 0xdd, 0xa7, 0xbe, 0x4e, 0xef, 0x06, 0x00, 0x00,
+	// 485 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x54, 0xdd, 0x8a, 0xd3, 0x40,
+	0x14, 0x36, 0x69, 0x9b, 0xc5, 0xd3, 0xed, 0xaa, 0xe3, 0x22, 0x31, 0x0a, 0xae, 0x11, 0xd6, 0xae,
+	0x62, 0xc2, 0x56, 0xc4, 0x9f, 0x65, 0x05, 0x57, 0x17, 0x76, 0x41, 0x14, 0x72, 0x25, 0x7a, 0x35,
+	0x6d, 0x8e, 0x69, 0x70, 0xcc, 0xd4, 0xcc, 0xb4, 0x50, 0x2f, 0xf5, 0x11, 0x7c, 0x1b, 0xaf, 0x7d,
+	0x03, 0xef, 0xbd, 0x10, 0x1f, 0x44, 0xe6, 0x0f, 0x5a, 0xc4, 0x36, 0xec, 0xdd, 0x37, 0x27, 0xdf,
+	0x77, 0xce, 0x77, 0xe6, 0x9c, 0x09, 0x3c, 0x2b, 0x4a, 0x39, 0x9e, 0x0e, 0x93, 0x11, 0xff, 0x98,
+	0xe2, 0x98, 0x7e, 0x66, 0x28, 0x65, 0x2a, 0x24, 0x32, 0x46, 0xeb, 0x94, 0x4e, 0xca, 0x54, 0x60,
+	0x3d, 0x2b, 0x47, 0x28, 0xd2, 0x11, 0x9b, 0x0a, 0x89, 0x75, 0x3a, 0xdb, 0x77, 0x30, 0x99, 0xd4,
+	0x5c, 0x72, 0x72, 0xcd, 0xd2, 0x13, 0x47, 0x4d, 0xdc, 0xf7, 0xd9, 0x7e, 0x74, 0xbd, 0xe0, 0xbc,
+	0x60, 0xa8, 0x53, 0xd1, 0xaa, 0xe2, 0x92, 0xca, 0x92, 0x57, 0xc2, 0x48, 0xa3, 0xed, 0x82, 0x17,
+	0x5c, 0xc3, 0x54, 0x21, 0x1b, 0xbd, 0xb5, 0x54, 0x77, 0x8c, 0x94, 0xc9, 0xb1, 0x2a, 0x6b, 0x90,
+	0x21, 0xc5, 0x3d, 0xe8, 0x9e, 0x56, 0xef, 0x79, 0x86, 0x9f, 0xa6, 0x28, 0x64, 0xbc, 0x0b, 0x9b,
+	0xe6, 0x28, 0x26, 0xbc, 0x12, 0x48, 0xae, 0x80, 0x5f, 0xe6, 0xa1, 0xb7, 0xe3, 0xf5, 0xcf, 0x1f,
+	0x05, 0xbf, 0x7f, 0xdd, 0xf0, 0x4f, 0x5f, 0x64, 0x7e, 0x99, 0xc7, 0x5b, 0xb0, 0xf9, 0x8a, 0xe7,
+	0x28, 0x9c, 0xee, 0xbb, 0x07, 0x6d, 0x15, 0xf8, 0x9f, 0x80, 0x84, 0xb0, 0x41, 0xf3, 0xbc, 0x46,
+	0x21, 0x42, 0x5f, 0x7d, 0xcc, 0xdc, 0x91, 0x1c, 0x43, 0xc0, 0xe8, 0x10, 0x99, 0x08, 0x5b, 0x3b,
+	0xad, 0x7e, 0x77, 0x70, 0x2f, 0x59, 0x71, 0x11, 0x89, 0x2a, 0x92, 0xbc, 0xd4, 0xfc, 0xe3, 0x4a,
+	0xd6, 0xf3, 0xcc, 0x8a, 0xa3, 0xc7, 0xd0, 0x5d, 0x08, 0x93, 0x8b, 0xd0, 0xfa, 0x80, 0x73, 0x63,
+	0x24, 0x53, 0x90, 0x6c, 0x43, 0x67, 0x46, 0xd9, 0x14, 0x6d, 0x7d, 0x73, 0x78, 0xe2, 0x3f, 0xf2,
+	0xe2, 0x13, 0xe8, 0xd9, 0x66, 0x6c, 0xd7, 0x0f, 0xa1, 0x53, 0xa9, 0x40, 0xe8, 0x69, 0x47, 0x37,
+	0xd7, 0x3a, 0xca, 0x0c, 0x3f, 0xbe, 0x00, 0xbd, 0x13, 0x7d, 0xbb, 0xee, 0x5e, 0xbe, 0x7a, 0x00,
+	0x8a, 0x60, 0xa2, 0xe4, 0x01, 0xb4, 0x15, 0x51, 0xdb, 0x6a, 0x94, 0x57, 0xd3, 0xc9, 0x53, 0x08,
+	0xcc, 0xd0, 0xb4, 0xf7, 0xee, 0x60, 0xf7, 0x5f, 0xa1, 0x1d, 0xaa, 0xd5, 0x59, 0x13, 0x56, 0x15,
+	0xbf, 0x86, 0x2d, 0x67, 0xcb, 0x76, 0x78, 0xb8, 0xdc, 0xe1, 0xed, 0xb5, 0x4e, 0xac, 0xde, 0xa8,
+	0x06, 0x3f, 0x7c, 0xd8, 0x78, 0x6e, 0x08, 0xe4, 0x1d, 0xb4, 0xd5, 0xca, 0x90, 0xfe, 0xca, 0x1c,
+	0x0b, 0x4b, 0x16, 0xed, 0x35, 0x60, 0x5a, 0x9f, 0x73, 0xe8, 0xe8, 0xd1, 0x90, 0xbd, 0xb5, 0x0e,
+	0xdd, 0x2e, 0x46, 0x77, 0x9a, 0x50, 0x4d, 0xfe, 0xf8, 0xea, 0x97, 0x9f, 0x7f, 0xbe, 0xf9, 0x97,
+	0xc9, 0xa5, 0x85, 0xf7, 0x98, 0xea, 0x1e, 0x09, 0x85, 0xc0, 0x4e, 0x6d, 0x75, 0xc2, 0xa5, 0x81,
+	0x47, 0x77, 0x1b, 0x71, 0x4d, 0xf5, 0xa3, 0xc3, 0xb7, 0x07, 0x67, 0xf8, 0x6f, 0x1c, 0x58, 0xf8,
+	0xe6, 0xdc, 0x30, 0xd0, 0x8f, 0xf8, 0xfe, 0xdf, 0x00, 0x00, 0x00, 0xff, 0xff, 0xc3, 0x15, 0x1f,
+	0x3c, 0x7f, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -597,8 +392,6 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ClusterClient interface {
 	Info(ctx context.Context, in *InfoRequest, opts ...grpc.CallOption) (*InfoResponse, error)
-	Containers(ctx context.Context, in *ContainersRequest, opts ...grpc.CallOption) (*ContainersResponse, error)
-	Images(ctx context.Context, in *ImagesRequest, opts ...grpc.CallOption) (*ImagesResponse, error)
 	Nodes(ctx context.Context, in *NodesRequest, opts ...grpc.CallOption) (*NodesResponse, error)
 	Health(ctx context.Context, in *HealthRequest, opts ...grpc.CallOption) (*HealthResponse, error)
 }
@@ -614,24 +407,6 @@ func NewClusterClient(cc *grpc.ClientConn) ClusterClient {
 func (c *clusterClient) Info(ctx context.Context, in *InfoRequest, opts ...grpc.CallOption) (*InfoResponse, error) {
 	out := new(InfoResponse)
 	err := c.cc.Invoke(ctx, "/stellar.services.cluster.v1.Cluster/Info", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *clusterClient) Containers(ctx context.Context, in *ContainersRequest, opts ...grpc.CallOption) (*ContainersResponse, error) {
-	out := new(ContainersResponse)
-	err := c.cc.Invoke(ctx, "/stellar.services.cluster.v1.Cluster/Containers", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *clusterClient) Images(ctx context.Context, in *ImagesRequest, opts ...grpc.CallOption) (*ImagesResponse, error) {
-	out := new(ImagesResponse)
-	err := c.cc.Invoke(ctx, "/stellar.services.cluster.v1.Cluster/Images", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -659,8 +434,6 @@ func (c *clusterClient) Health(ctx context.Context, in *HealthRequest, opts ...g
 // ClusterServer is the server API for Cluster service.
 type ClusterServer interface {
 	Info(context.Context, *InfoRequest) (*InfoResponse, error)
-	Containers(context.Context, *ContainersRequest) (*ContainersResponse, error)
-	Images(context.Context, *ImagesRequest) (*ImagesResponse, error)
 	Nodes(context.Context, *NodesRequest) (*NodesResponse, error)
 	Health(context.Context, *HealthRequest) (*HealthResponse, error)
 }
@@ -683,42 +456,6 @@ func _Cluster_Info_Handler(srv interface{}, ctx context.Context, dec func(interf
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(ClusterServer).Info(ctx, req.(*InfoRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Cluster_Containers_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ContainersRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ClusterServer).Containers(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/stellar.services.cluster.v1.Cluster/Containers",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ClusterServer).Containers(ctx, req.(*ContainersRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _Cluster_Images_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ImagesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ClusterServer).Images(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/stellar.services.cluster.v1.Cluster/Images",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ClusterServer).Images(ctx, req.(*ImagesRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -766,14 +503,6 @@ var _Cluster_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Info",
 			Handler:    _Cluster_Info_Handler,
-		},
-		{
-			MethodName: "Containers",
-			Handler:    _Cluster_Containers_Handler,
-		},
-		{
-			MethodName: "Images",
-			Handler:    _Cluster_Images_Handler,
 		},
 		{
 			MethodName: "Nodes",
